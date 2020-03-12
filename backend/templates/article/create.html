@@ -1,0 +1,15 @@
+{% extends '../layouts/layout.html' %}
+
+{% block breadcrumb %}
+<ul class="breadcrumb">
+  <li><a href="/backend/config/index">首页</a></li> \
+  <li><a href="/backend/article/index">新闻</a></li> \
+  <li class="active">新建</li>
+</ul>
+{% endblock %} 
+
+{% block content %}
+<div class="card">
+  {% include './_form.html' %}
+</div>
+{% endblock %} 

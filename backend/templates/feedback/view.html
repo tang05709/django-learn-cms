@@ -1,0 +1,53 @@
+{% extends '../layouts/layout.html' %}
+
+{% block breadcrumb %}
+<ul class="breadcrumb">
+  <li><a href="/backend/config/index">首页</a></li> \
+  <li><a href="/backend/feedback/index">反馈</a></li> \
+  <li class="active">查看</li>
+</ul>
+{% endblock %} 
+
+{% block content %}
+<div class="card">
+  <div class="card-header ty-main-title">
+    <h3 class="card-title">
+      反馈
+    </h3>
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body">
+    <div class="grid-view">
+      {% if detail %}
+      <table id="example1" class="table table-bordered table-striped">
+        <tr>
+            <td width="20%">编号</td>
+            <td>{{detail.id}}</td>
+        </tr>
+        <tr>
+            <td width="20%">标题</td>
+            <td>{{detail.title}}</td>
+        </tr>
+        <tr>
+            <td width="20%">内容</td>
+            <td>{{detail.content}}</td>
+        </tr>
+        <tr>
+            <td width="20%">来源</td>
+            <td>{{detail.source}}</td>
+        </tr>
+        <tr>
+            <td width="20%">ip</td>
+            <td>{{detail.ip}}</td>
+        </tr>
+        <tr>
+            <td width="20%">创建日期</td>
+            <td>{{detail.created_at|date:'Y-m-d H:i:s'}}</td>
+        </tr>
+      </table>
+      {% endif %}
+    </div>
+  </div>
+  <!-- /.card-body -->
+</div>
+{% endblock %} 

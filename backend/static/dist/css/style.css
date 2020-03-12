@@ -1,0 +1,107 @@
+li {
+    list-style: none;
+}
+.content-breadcrumb {
+    background-color: #ecf0f5;
+}
+.help-block {
+    font-size: 12px;
+    color: #999;
+}
+.ty-main-title {
+    position: relative;
+}
+.ty-main-title .btn-btn1 {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+.customer-radio-group {
+    padding-top: 5px;
+}
+
+.card-body .form-group .media-picker .media-picker-button {
+    display: block;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    text-align: center;
+    padding-top: 2px;
+}
+.card-body .form-group .media-picker .media-list {
+    margin-top: 10px;
+}
+.card-body .form-group .media-picker .media-list ul::after {
+    content: "";
+    clear: both;
+    height: 0;
+    display: block;
+}
+.card-body .form-group .media-picker .media-list ul {
+    margin: 0;
+    padding: 0;
+}
+.card-body .form-group .media-picker .media-list ul li {
+    float: left;
+    width: 120px;
+    text-align: center;
+    margin: 10px;
+    list-style: none;
+    position: relative;
+}
+.card-body .form-group .media-picker .media-list ul li img {
+    width: 120px;
+    height: auto;
+}
+.card-body .form-group .media-picker .media-list ul li p {
+    height: 45px;
+    overflow: hidden;
+    word-break: break-all;
+}
+.card-body .form-group .media-picker .media-list ul li .delete-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #ffffff;
+    background: rgba(100, 149, 237, 0.8);
+    display: none;
+    cursor: pointer;
+}
+.card-body .form-group .media-picker .media-list ul li:hover .delete-image {
+    display: block;
+}   
+.tree-grid-view .tree-grid ul li {
+    float: left;
+}
+.tree-grid-view .tree-grid ul li.item1 {
+    width: 5%;
+}
+.tree-grid-view .tree-grid ul li.item2 {
+    width: 50%;
+}
+.tree-grid-view .tree-grid ul li.item3 {
+    width: 30%;
+}
+.tree-grid-view .tree-grid ul li.item4 {
+    width: 20%;
+}
+.tree-grid-view .tree-grid ul li.item5 {
+    width: 10%;
+}
+.tree-grid-view .tree-grid ul.level_2 li span {
+    padding-left: 20px;
+}
+.tree-grid-view .tree-grid ul.level_3 li span {
+    padding-left: 40px;
+}
+.tree-grid-view .tree-grid ul.level_4 li span {
+    padding-left: 60px;
+}
+.tree-grid-view .tree-grid-body>ul ul {
+    display: none;
+}

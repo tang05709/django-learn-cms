@@ -1,0 +1,15 @@
+<div class="card-header ty-main-title">
+  <h3 class="card-title">
+    广告
+  </h3>
+  <a class="btn btn-default btn-btn1" href="/backend/adv/index">列表</a>
+</div>
+<form class="form-horizontal" action="{{ request.get_full_path }}" method="post">
+  {% csrf_token %}
+  <div class="card-body">
+    {{ form.as_div }}
+  </div>
+  <div class="card-footer">
+    <input type="submit" class="btn btn-info" value="submit" />
+  </div>
+</form>

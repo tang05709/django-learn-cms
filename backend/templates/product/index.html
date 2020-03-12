@@ -1,0 +1,50 @@
+{% extends '../layouts/layout.html' %}
+
+{% block breadcrumb %}
+<ul class="breadcrumb">
+  <li><a href="/backend/config/index">首页</a></li> \
+  <li><a href="/backend/product/index">产品</a></li> \
+  <li class="active">列表</li>
+</ul>
+{% endblock %} 
+
+{% block content %}
+<div class="card">
+  <div class="card-header ty-main-title">
+    <h3 class="card-title">
+      产品
+    </h3>
+    <a class="btn btn-success btn-btn1" href="/backend/product/create">添加</a>
+  </div>
+  <div class="card-body">
+    <div class="grid-view">
+      {% if grid %}
+      <table id="example1" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>编号</th>
+          <th>名称</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for data in grid %}
+        <tr>
+          <td><input type="checkbox" name="" value="" /></td>
+          <td>{{data.id}}</td>
+          <td>{{data.title}}</td>
+          <td>
+            <a href="/backend/product/update/{{data.id}}">编辑</a>
+            <a href="#" data-method="POST" data-url="/backend/product/delete/{{data.id}}" data-confirm="确定么？">{% if data.status == 8 %}启用{% else %}禁用{% endif %}</a>
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+    {% include '../components/paginate2.html' %}
+  </div>
+</div>
+{% endblock %} 

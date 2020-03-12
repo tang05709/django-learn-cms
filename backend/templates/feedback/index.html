@@ -1,0 +1,59 @@
+{% extends '../layouts/layout.html' %}
+
+{% block breadcrumb %}
+<ul class="breadcrumb">
+  <li><a href="/backend/config/index">首页</a></li> \
+  <li><a href="/backend/feedback/index">反馈</a></li> \
+  <li class="active">列表</li>
+</ul>
+{% endblock %} 
+
+{% block content %}
+<div class="card">
+  <div class="card-header ty-main-title">
+    <h3 class="card-title">
+      反馈
+    </h3>
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body">
+    <div class="grid-view">
+      {% if grid %}
+      <table id="example1" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>编号</th>
+          <th>标题</th>
+          <th>内容</th>
+          <th>来源</th>
+          <th>ip</th>
+          <th>创建日期</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for data in grid %}
+        <tr>
+          <td><input type="checkbox" name="" value="" /></td>
+          <td>{{data.id}}</td>
+          <td>{{data.title}}</td>
+          <td>{{data.content}}</td>
+          <td>{{data.source}}</td>
+          <td>{{data.ip}}</td>
+          <td>{{data.created_at|date:'Y-m-d H:i:s'}}</td>
+          <td>
+            <a href="/backend/feedback/view/{{data.id}}">查看</a>
+            <a href="#" data-method="POST" data-url="/backend/feedback/delete/{{data.id}}" data-confirm="确定么？">{% if data.status == 8 %}启用{% else %}禁用{% endif %}</a>
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+    {% include '../components/paginate2.html' %}
+  </div>
+  <!-- /.card-body -->
+</div>
+{% endblock %} 

@@ -1,0 +1,27 @@
+<div class="editor" id="editor">
+    {% autoescape off%}
+    {% if widget.value != None %} {{ widget.value|stringformat:'s' }} {% endif %}
+    {% endautoescape %}
+    
+</div>
+<input class="content" id="content" name="{{ widget.name }}" {% if widget.value != None %} value="{{ widget.value|stringformat:'s' }}"{% endif %} {% include "django/forms/widgets/attrs.html" %} style="display: none;" />
+    
+
+{% load static %}
+<script src="{% static 'plugins/wangeditor/wangEditor.min.js' %}"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#editor')
+    var text = document.getElementById("content")
+    editor.customConfig.uploadImgServer = '/backend/upload'
+    editor.customConfig.uploadImgParams = {
+        updir: 'detail',
+        csrfmiddlewaretoken: $.cookie('csrftoken')
+    }
+    editor.customConfig.uploadFileName = 'image'
+    editor.customConfig.onchange = function (html) {
+        document.getElementById("content").value = html
+    }
+    editor.create()
+    text.value = editor.txt.html()
+</script>

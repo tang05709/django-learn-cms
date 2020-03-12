@@ -1,0 +1,20 @@
+{% extends '../layouts/layout.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header ty-main-title">
+        <h3 class="card-title">
+          test
+        </h3>
+      </div>
+      <form class="form-horizontal" action="/backend/test" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <div class="card-body">
+         <input type="file" name="image" />
+        </div>
+        <div class="card-footer">
+          <input type="submit" class="btn btn-info" value="submit" />
+        </div>
+      </form>
+</div>
+{% endblock %} 

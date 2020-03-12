@@ -1,0 +1,58 @@
+{% extends '../layouts/layout.html' %}
+
+{% block breadcrumb %}
+<ul class="breadcrumb">
+  <li><a href="/backend/config/index">首页</a></li> \
+  <li><a href="/backend/adv/index">广告</a></li> \
+  <li class="active">列表</li>
+</ul>
+{% endblock %} 
+
+{% block content %}
+<div class="card">
+  <div class="card-header ty-main-title">
+    <h3 class="card-title">
+      广告
+    </h3>
+    <a class="btn btn-success btn-btn1" href="/backend/adv/create">添加</a>
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body">
+    <div class="grid-view">
+      {% if grid %}
+      <table id="example1" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>编号</th>
+          <th>名称</th>
+          <th>广告位</th>
+          <th>图片</th>
+          <th>排序</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for data in grid %}
+        <tr>
+          <td><input type="checkbox" name="" value="" /></td>
+          <td>{{data.id}}</td>
+          <td>{{data.name}}</td>
+          <td>{{data.adv_position.name}}</td>
+          <td><img src="../../frontend/{{data.image}}" style="height: 50px;" /></td>
+          <td>{{data.sort}}</td>
+          <td>
+            <a href="/backend/adv/update/{{data.id}}">编辑</a>
+            <a href="#" data-method="POST" data-url="/backend/adv/delete/{{data.id}}" data-confirm="确定么？">{% if data.status == 8 %}启用{% else %}禁用{% endif %}</a>
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+    {% include '../components/paginate.html' %}
+  </div>
+  <!-- /.card-body -->
+</div>
+{% endblock %} 

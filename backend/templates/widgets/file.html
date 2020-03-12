@@ -1,0 +1,19 @@
+{% load static %}
+<div class="media-picker">
+    <!--data-multiple="multiple" data-upload-path="common"-->
+    <a {% include "django/forms/widgets/attrs.html" %} data-id="{{ widget.name }}" href="javascript:void(0)">
+        <span class="fa fa-cloud-upload-alt"></span>
+    </a>
+    <input type="hidden" name="{{ widget.name }}" {% if widget.value != None %} value="{{ widget.value|stringformat:'s' }}" {%else%} value="" {% endif %} id="id_{{ widget.name }}">
+    <div class="help-block"></div>
+    <div class="media-list">
+        <ul>
+            {%if media_list%}
+                {%for img in media_list%}
+                <li><img src="{% static img %}" /></li>
+                {%endfor%}
+            {%endif%}
+        </ul>
+    </div>
+</div>
+<!--<input type="number" name="logo" value="50" class="form-control" required id="id_logo">-->
