@@ -1,6 +1,6 @@
-##django练习：实现一个cms后台，受php影响，结构组织偏向mvc
+django练习：实现一个cms后台，受php影响，结构组织偏向mvc
 
-####backend： 后台
+backend： 后台
 
     forms： ModelForm
 
@@ -14,11 +14,11 @@
 
     widgets: 自定义表单
 
-####common: 主要放置模型
+common: 主要放置模型
 
     models： 模型
 
-####frontend： 前端
+frontend： 前端
 
     static： 静态文件
 
