@@ -21,6 +21,7 @@ class Category(BaseModel):
     seo_description = models.CharField(max_length=255, null=True, blank=True, verbose_name = "seo描述")
     sort = models.IntegerField(default = 0, verbose_name = "排序")
     status = models.SmallIntegerField(default = 0, choices = STATUS, db_index = True, verbose_name = "状态")
+    content = models.TextField(null=True, blank=True, verbose_name = "详情")
 
     def get_absolute_url(self):
         return reverse('backend:category-index')

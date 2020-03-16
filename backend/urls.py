@@ -6,7 +6,7 @@ from .views.ConfigView import ConfigIndexView, ConfigCreateView, ConfigUpdateVie
 from .views.FeedbackView import FeedbackIndexView, FeedbackDetailView, FeedbackDeleteView
 from .views.FriendLinkView import FriendLinkIndexView, FriendLinkCreateView, FriendLinkUpdateView, FriendLinkDeleteView
 from .views.CategoryView import CategoryIndexView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView
-from .views.PostsView import PostsIndexView, PostsCreateView, PostsUpdateView, PostsDeleteView
+from .views.PostsView import PostsIndexView
 from .views.ArticleView import ArticleIndexView, ArticleCreateView, ArticleUpdateView, ArticleDeleteView
 from .views.ProductView import ProductIndexView, ProductCreateView, ProductUpdateView, ProductDeleteView
 from .views.UploadFileView import UploadFileView
@@ -52,9 +52,6 @@ urlpatterns = [
     path('category/delete/<int:pk>', CategoryDeleteView.as_view(), name = 'category-delete'),
 
     path('posts/index', PostsIndexView.as_view(), name = 'posts-index'),
-    path('posts/create', PostsCreateView.as_view(), name = 'posts-create'),
-    path('posts/update/<int:pk>', PostsUpdateView.as_view(), name = 'posts-update'),
-    path('posts/delete/<int:pk>', PostsDeleteView.as_view(), name = 'posts-delete'),
 
     path('article/index', ArticleIndexView.as_view(), name = 'article-index'),
     path('article/create', ArticleCreateView.as_view(), name = 'article-create'),

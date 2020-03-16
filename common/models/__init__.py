@@ -1,6 +1,5 @@
 from .Adv import Adv
 from .AdvPosition import AdvPosition
-from .Posts import Posts
 from .Article import Article
 from .Attachment import Attachment
 from .Category import Category

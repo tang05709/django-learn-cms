@@ -20,7 +20,6 @@ class Product(BaseModel):
     seo_description = models.CharField(max_length=255, null=True, blank=True, verbose_name = "seo描述")
     click = models.IntegerField(default = 0, verbose_name = "点击量")
     sort = models.IntegerField(default = 0, verbose_name = "排序")
-    image = models.OneToOneField(Attachment, db_column = "image", related_name = "image", on_delete = models.DO_NOTHING, null = True, blank=True, verbose_name = "图片")
     photos = models.ManyToManyField(Attachment, through='ProductPhoto', through_fields=('product', 'photo'), related_name = "photos", blank=True, verbose_name = "画册") #symmetrical = False
     content = models.TextField(null=True, blank=True, verbose_name = "详情")
 
