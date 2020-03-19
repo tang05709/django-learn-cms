@@ -1,0 +1,45 @@
+{% extends '../layouts/layout.html' %}
+
+{% block breadcrumb %}
+<ul class="breadcrumb">
+  <li><a href="/backend/config/index">首页</a></li> \
+  <li><a href="/backend/spider/index">配置</a></li> \
+  <li class="active">爬虫</li>
+</ul>
+{% endblock %} 
+
+{% block content %}
+<div class="card">
+    <div class="card-header ty-main-title">
+        <h3 class="card-title">
+          爬虫配置
+        </h3>
+      </div>
+      <form class="form-horizontal" action="{{ request.get_full_path }}" method="post">
+        {% csrf_token %}
+        <div class="card-body">
+            <div class="form-group row ">
+                <div class="col-sm-2 col-form-label text-right">
+                    <label for="id_seo_title">爬取页数:</label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="text" name="page_size" maxlength="255" class="form-control" id="id_page_size">
+                </div>
+            </div>
+            <div class="form-group row ">
+                <div class="col-sm-2 col-form-label text-right">
+                    <label for="id_seo_title">每页间隔时长:</label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="text" name="time_sleep" maxlength="255" class="form-control" id="idtime_sleep">
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          <input type="submit" class="btn btn-info" value="submit" />
+        </div>
+        <!-- /.card-footer -->
+      </form>
+</div>
+{% endblock %} 

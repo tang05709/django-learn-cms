@@ -20,7 +20,7 @@ class Article(BaseModel):
     seo_description = models.CharField(max_length=255, null=True, blank=True, verbose_name = "seo描述")
     click = models.IntegerField(default = 0, verbose_name = "点击量")
     sort = models.IntegerField(default = 0, verbose_name = "排序")
-    image = models.OneToOneField(Attachment, db_column = "image", on_delete = models.DO_NOTHING, null=True, blank=True, verbose_name = "图片")
+    image = models.OneToOneField(Attachment, on_delete = models.DO_NOTHING, null=True, blank=True, verbose_name = "图片")
     content = models.TextField(null=True, blank=True, verbose_name = "详情")
 
     def get_absolute_url(self):

@@ -10,6 +10,7 @@ from .views.PostsView import PostsIndexView
 from .views.ArticleView import ArticleIndexView, ArticleCreateView, ArticleUpdateView, ArticleDeleteView
 from .views.ProductView import ProductIndexView, ProductCreateView, ProductUpdateView, ProductDeleteView
 from .views.UploadFileView import UploadFileView
+from .views.SpiderView import SpiderView
 from .views.SiteView import LoginView, LoginInView, LoginOutView
 from .views.TestView import TestView
 
@@ -22,6 +23,8 @@ urlpatterns = [
     path('login-in', LoginInView.as_view(), name = 'login-in'),
     path('login-out', LoginOutView.as_view(), name = 'login-out'),
 
+    path('spider/index', SpiderView.as_view(), name = 'spider'),
+    
     path('adv-position/index', AdvPositionIndexView.as_view(), name = 'adv-position-index'),
     path('adv-position/create', AdvPositionCreateView.as_view(), name = 'adv-position-create'),
     path('adv-position/update/<int:pk>', AdvPositionUpdateView.as_view(), name = 'adv-position-update'),

@@ -1,12 +1,12 @@
 import json, time, uuid, os.path
 from django.http import HttpResponse
 from django.views.generic.base import View
+from backend.helps.Tools import Tools
 from common.models.Attachment import Attachment
 
 
 class UploadFileView(View):
     
-
     def post(self, request, *args, **kwargs):
         resp = {'errno': 100, 'data': '请选择图片'}
         #upfile = request.FILES.get('image', None)
@@ -33,15 +33,12 @@ class UploadFileView(View):
         return HttpResponse(json.dumps(resp), content_type="application/json")
 
     def _upload(self, upfile, updir):
-        new_file_name = self._hash_filename(upfile.name)
-        res_save_path = self._get_path(updir)
-        save_path = res_save_path['save_path']
-        local_save_path = res_save_path['local_save_path']
-        local_save_file = local_save_path + new_file_name
-        save_file = save_path + new_file_name
+        new_file_name = Tools.hash_filename(upfile.name)
+        res_save_path = Tools.get_path(updir)
+        save_file = res_save_path + new_file_name
         url = 'http://127.0.0.1:8000/' + save_file
         
-        with open(local_save_file, 'wb') as f:
+        with open(save_file, 'wb') as f:
             for line in upfile.chunks():
                 f.write(line)
             f.close()
@@ -53,25 +50,5 @@ class UploadFileView(View):
         model.status = 0
         model.save()
         return {'id': model.id, 'url': url}
-
-    def _hash_filename(self, filename):
-        _, suffix = os.path.splitext(filename)
-        return '%s%s' % (uuid.uuid4().hex, suffix)
-
-    def _get_path(self, updir):
-        if(updir == ''):
-            path = 'images/' + time.strftime("%Y%m%d", time.localtime()) + '/'
-        else:
-            path = 'images/' + updir + '/' + time.strftime("%Y%m%d", time.localtime()) + '/'
-        # 本地储存路径
-        local_save_path = os.path.join('frontend/static', path) 
-        # 数据库存储路径
-        save_path = os.path.join(path)
-        isExists = os.path.exists(local_save_path)
-        if not isExists:
-            os.makedirs(local_save_path) 
-        
-        return {'save_path': save_path, 'local_save_path': local_save_path}
-
 
     

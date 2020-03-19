@@ -19,6 +19,12 @@ class ArticleForm(BootstrapModelForm):
             images = [self.instance.image.url]
         self.fields['image'] = fields.CharField(label = '图片', widget = TyFileInput(attrs={'class': "customer-form-file media-picker-button", 'data-upload-path': 'article', 'id': 'image_uploader'}, media_list = images))
 
+    def clean_image(self):
+        image = self.cleaned_data['image']
+        if image is None:
+            return 0
+        return image
+
     class Meta:
         model = Article
         fields = ['title', 'category', 'status', 'url', 'image', 'seo_title', 'seo_keywords', 'seo_description', 'content']

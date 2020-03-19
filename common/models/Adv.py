@@ -13,7 +13,7 @@ class Adv(BaseModel):
     adv_position = models.ForeignKey(AdvPosition, on_delete = models.DO_NOTHING, verbose_name = "广告位")
     name = models.CharField(max_length=255, verbose_name = "广告名称")
     url = models.CharField(max_length=255, verbose_name = "广告连接")
-    image = models.OneToOneField(Attachment, db_column = "image", on_delete = models.DO_NOTHING, verbose_name = "图片")
+    image = models.OneToOneField(Attachment, on_delete = models.DO_NOTHING, null=True, blank=True, verbose_name = "图片")
     status = models.SmallIntegerField(default = 0, choices = STATUS, db_index = True, verbose_name = "状态")
     sort = models.IntegerField(default = 0, verbose_name = "排序")
     describe = models.CharField(max_length=255, null=True, blank=True, verbose_name = "广告描述")

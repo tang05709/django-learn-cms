@@ -46,7 +46,7 @@ class CategoryForm(BootstrapModelForm):
 
     class Meta:
         model = Category
-        fields = ['name', 'module', 'parent', 'seo_title', 'seo_keywords', 'seo_description', 'sort', 'status']
+        fields = ['name', 'module', 'parent', 'seo_path', 'seo_title', 'seo_keywords', 'seo_description', 'sort', 'status']
         widgets = {
             "status": TyRadioSelect(attrs={'class':'customer-form-radio'}),
             "seo_description": widget.Textarea(attrs={'class':'form-control', 'rows': 5}),

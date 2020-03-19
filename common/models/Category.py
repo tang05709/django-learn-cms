@@ -16,6 +16,7 @@ class Category(BaseModel):
     name = models.CharField(max_length=255, verbose_name = "栏目名称")
     module = models.CharField(max_length=255, choices = MODULE, verbose_name = "栏目类型")
     parent = models.ForeignKey('self', null=True, blank=True, on_delete = models.SET_NULL, related_name='children', verbose_name = "父级")
+    seo_path = models.CharField(max_length=20, null=True, blank=True, verbose_name = "seo url")
     seo_title = models.CharField(max_length=255, null=True, blank=True, verbose_name = "seo标题")
     seo_keywords = models.CharField(max_length=255, null=True, blank=True, verbose_name = "seo关键字")
     seo_description = models.CharField(max_length=255, null=True, blank=True, verbose_name = "seo描述")

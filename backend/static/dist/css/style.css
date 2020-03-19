@@ -75,6 +75,13 @@ li {
 .card-body .form-group .media-picker .media-list ul li:hover .delete-image {
     display: block;
 }   
+.tree-grid-view .tree-grid ul {
+    margin: 1px 0;
+    padding: 8px 0;
+}
+.tree-grid-view .tree-grid ul:hover {
+    background: #f8f8f8;
+}
 .tree-grid-view .tree-grid ul li {
     float: left;
 }

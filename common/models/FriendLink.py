@@ -10,7 +10,7 @@ class FriendLink(BaseModel):
         [9, '禁用'],
     ]
     name = models.CharField(max_length=255, verbose_name = "名称")
-    logo = models.OneToOneField(Attachment, db_column = "logo", null=True, blank=True, on_delete = models.DO_NOTHING, verbose_name = "Logo")
+    logo = models.OneToOneField(Attachment, null=True, blank=True, on_delete = models.DO_NOTHING, verbose_name = "Logo")
     url = models.URLField(max_length=255, verbose_name = "Url", help_text = "格式： https://www.example.com")
     sort = models.IntegerField(default = 0, verbose_name = "排序")
     status = models.SmallIntegerField(default = 0, choices = STATUS, db_index = True, verbose_name = "状态")
