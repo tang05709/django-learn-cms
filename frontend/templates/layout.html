@@ -36,40 +36,21 @@
                         <div class="collapse navbar-collapse" id="navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown"><a href="#">Home </a></li>
+                                {% for navigation in navigations %}
+                                {% if navigation.children %}
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Courses <span class="caret"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ navigation.name }} <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                      <li><a href="courses-filterable.html">Courses Filterable</a></li>
-                                      <li><a href="courses-tabs.html">Courses Tabs</a></li>
-                                      <li><a href="single-course.html">Single Course</a></li>
+                                      {% for nav in navigation.children %}
+                                      <li><a href="/frontend/{{ nav.seo_url }}">{{ nav.name }}</a></li>
+                                      {% endfor %}
                                     </ul>
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">News <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                      <li><a href="news-list.html">News List</a></li>
-                                      <li><a href="news-grid.html">News Grid</a></li>
-                                      <li><a href="single-post.html">Single Post</a></li>
-                                      <li><a href="single-post-no-sidebar.html">Single Post No Sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                      <li><a href="about-us.html">About Us</a></li>
-                                      <li><a href="404.html">404</a></li>
-                                      <li><a href="coming-soon.html">Coming Soon</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact-us.html">Contact Us</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <form class="form-inline">
-                                            <button type="submit" class="btn btn-default pull-right"><i class="glyphicon glyphicon-search"></i></button><input type="text" class="form-control pull-left" placeholder="Search">
-                                        </form>
-                                      </ul>
-                                </li>
+                                {% else %}
+                                <li><a href="/frontend/{{ navigation.seo_url }}">{{ navigation.name }}</a></li>
+                                {% endif %}
+                                {% endfor %}
+                                
                             </ul>
                         </div>                        
                     </div>

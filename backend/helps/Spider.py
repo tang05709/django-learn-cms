@@ -1,9 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-import random
+import random, time
 from backend.helps.Tools import Tools
-from common.models.Article import Article
-from common.models.Attachment import Attachment
+from django.db import connection
 
 class SoupLearn:
     def getArticleList(self, page):
@@ -34,37 +33,33 @@ class SoupLearn:
             title = content_body.h1.string
             content_img_attrs = content_body.img.attrs
             save_img = 0
+            current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             if 'src' in content_img_attrs:
                 content_img_src = content_img_attrs['src']
                 down_image = self.downloadPic(content_img_src, 'article')
                 if down_image is not None:
-                    attachment_model = Attachment()
-                    attachment_model.original_name = content_img_src
-                    attachment_model.name = down_image['filename']
-                    attachment_model.url = down_image['save_file']
-                    attachment_model.status = 0
-                    attachment_model.save()
-                    save_img = attachment_model.id 
+                    with connection.cursor() as cursor:
+                        cursor.execute("INSERT INTO attachment (`created_at`, `updated_at`, `original_name`, `name`, `url`, `status`) Values(%s, %s, %s, %s, %s, %s)", 
+                        [current_time, current_time, content_img_src, down_image['filename'], down_image['save_file'], 0])
+                        lastSql = cursor.execute("SELECT last_insert_id()")
+                        row = cursor.fetchone()
+                        if len(row) > 0:
+                            save_img = row[0]
                          
                 
             content_detail = content_body.find('div' , class_= 'main-content-article-msg')
             
-            article_model = Article()
             cid_index = random.randint(0,3)
-            article_model.category_id = cids[cid_index]
-            article_model.title = title
-            article_model.url = ''
-            article_model.status = 0
-            article_model.seo_title = title
-            article_model.seo_keywords = title
-            article_model.seo_description = title
-            article_model.click = 0
-            article_model.sort = 0
-            article_model.content = content_detail
-            article_model.image_id = save_img
-            print(article_model)
-            article_model.save()
-            print(article_model.id)
+            if title is not None:
+                with connection.cursor() as cursor:
+                    cursor.execute("INSERT INTO article (`created_at`, `updated_at`, `title`, `url`, `status`, `seo_title`, `seo_keywords`, `seo_description`, `click`, `sort`, `content`, `category_id`, `image_id`) " + 
+                    "VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                    [current_time, current_time, title, '', 0, title, title, title, 0, 0, content_detail, cids[cid_index], save_img])
+                    print("save article:  {0}".format(title))
+
+
+            
+           
                 
             
             

@@ -43,12 +43,13 @@ class UploadFileView(View):
                 f.write(line)
             f.close()
         
-        model = Attachment()
-        model.original_name = upfile.name
-        model.name = new_file_name
-        model.url = save_file
-        model.status = 0
-        model.save()
+        attachment_model = Attachment(
+            original_name = content_img_src,
+            name          = down_image['filename'],
+            url           = down_image['save_file'],
+            status        = 0
+        )
+        attachment_model.save()
         return {'id': model.id, 'url': url}
 
     

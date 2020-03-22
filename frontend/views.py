@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from common.models import Article, Category
 
 # Create your views here.
 def index(request):
@@ -7,25 +8,28 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
-def articles(request):
+def articles(request, cid):
+    articles = Article.objects.filter(category_id = cid)
+
     context = {
-        'data': 'test'
+        'articles': articles
     }
     return render(request, 'articles.html', context)
 
-def article(request):
+def article(request, id):
+    article = Article.objects.get(id=id)
     context = {
-        'data': 'test'
+        'article': article
     }
     return render(request, 'article.html', context)
 
-def products(request):
+def products(request, cid):
     context = {
         'data': 'test'
     }
     return render(request, 'products.html', context)
 
-def product(request):
+def product(request, id):
     context = {
         'data': 'test'
     }
@@ -38,7 +42,14 @@ def feedback(request):
     return render(request, 'feedback.html', context)
 
 def posts(request):
+    seo_path = (request.path).replace('/frontend/', '', 1)
+    content = ''
+    if seo_path is not None:
+        posts = Category.objects.get(seo_path=seo_path)
+        if posts is not None:
+            content = posts.content
+
     context = {
-        'data': 'test'
+        'content': content
     }
     return render(request, 'posts.html', context)

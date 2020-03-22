@@ -16,7 +16,14 @@ class TreeView:
                 tree['level'] = level
                 tree['sort'] = obj['sort']
                 tree['status'] = obj['status']
+                tree['seo_path'] = obj['seo_path']
                 tree['module'] = obj['module']
+                tree['seo_url'] = obj['module'] + '/' + str(obj['id'])
+                if obj['seo_path'] is not None:
+                    if obj['module'] == 'posts':
+                        tree['seo_url'] = obj['seo_path']
+                    else:
+                        tree['seo_url'] = obj['seo_path']+ '/' + str(obj['id'])
                 tree['children'] = []
                 
                 children    = self.ListLayerTree(data, obj['id'], nextLevel)
@@ -41,7 +48,14 @@ class TreeView:
                 tree['level'] = level
                 tree['sort'] = obj['sort']
                 tree['status'] = obj['status']
+                tree['seo_path'] = obj['seo_path']
                 tree['module'] = obj['module']
+                tree['seo_url'] = obj['module'] + '/' + str(obj['id'])
+                if obj['seo_path'] is not None:
+                    if obj['module'] == 'posts':
+                        tree['seo_url'] = obj['seo_path']
+                    else:
+                        tree['seo_url'] = obj['seo_path']+ '/' + str(obj['id'])
                 trees.append(tree)
                 children    = self.ListTree(data, obj['id'], nextLevel)
                 if children:

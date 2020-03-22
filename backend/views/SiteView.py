@@ -7,6 +7,7 @@ class LoginView(TemplateView):
 
 
 class LoginInView(View):
+
     def post(self, request, *args, **kwargs):
         username = request.POST.get('login')
         password = request.POST.get('secret')
